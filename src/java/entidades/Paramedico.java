@@ -43,7 +43,7 @@ public class Paramedico
                 reportes.add(this.reportes.get(i));
             }
         }*/
-        String consulta = "select * from reporte where cedulaParamedico = '" + this.cedula + "'";
+        String consulta = "select * from bitacora where cedulaParamedico = '" + this.cedula + "'";
         SQLDatabaseConnection db = new SQLDatabaseConnection();
         try {
             ResultSet res = db.consulta(consulta);
@@ -58,7 +58,7 @@ public class Paramedico
     }
 
     public boolean hacerReporte(Reporte reporte) {
-        String insertSql = "insert into reporte (fecha,descripcion,cedulaParamedico, paciente) values (cast(getdate() as date),'" + reporte.getDescripcion() + "','" + reporte.getCedulaParamedico() + "','" + reporte.getPaciente() + "')";
+        String insertSql = "insert into reporte (fecha,descripcion,cedulaParamedico, idPaciente) values (cast(getdate() as date),'" + reporte.getDescripcion() + "','" + reporte.getCedulaParamedico() + "','" + reporte.getPaciente()+ "')";
         SQLDatabaseConnection db = new SQLDatabaseConnection();
         try {
             if (db.insert(insertSql) == 1) {
